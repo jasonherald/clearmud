@@ -17,3 +17,6 @@ type wobject struct {
 type planet struct {
 	*wobject
 }
+
+type user struct {
+}
