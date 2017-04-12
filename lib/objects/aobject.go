@@ -1,28 +1,28 @@
 package objects
 
-type wmap struct {
-	limitx, limity, limitz int64
+type Wmap struct {
+	Limitx, Limity, Limitz int64
 }
 
-type basecoord struct {
-	x, y, z int64
+type Basecoord struct {
+	X, Y, Z int64
 }
 
-type coord struct {
-	*basecoord
-	parent int64
+type Coord struct {
+	*Basecoord
+	Parent int64
 }
 
-type wobject struct {
-	coords      coord
-	description string
-	name        string
+type Wobject struct {
+	Coords      Coord
+	Description string
+	Name        string
 }
 
-type planet struct {
-	*wobject
+type Planet struct {
+	*Wobject
 }
 
-type user struct {
-	coords basecoord
+type User struct {
+	Coords Basecoord
 }
