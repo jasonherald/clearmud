@@ -45,7 +45,7 @@ func main() {
 		return
 	}
 
-	var motd = loadMotd()
+	//var motd = loadMotd()
 
 	for {
 		conn, err := psock.Accept()
@@ -56,6 +56,6 @@ func main() {
 		channel := make(chan string)
 		go requestHandler(conn, channel)
 		go sendData(conn, channel)
-		channel <- motd
+		channel <- loadMotd()
 	}
 }
