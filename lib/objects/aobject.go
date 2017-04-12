@@ -1,11 +1,16 @@
 package objects
 
 type wmap struct {
-	limitx, limity int64
+	limitx, limity, limitz int64
+}
+
+type basecoord struct {
+	x, y, z int64
 }
 
 type coord struct {
-	x, y, z, parent int64
+	*basecoord
+	parent int64
 }
 
 type wobject struct {
@@ -19,4 +24,5 @@ type planet struct {
 }
 
 type user struct {
+	coords basecoord
 }
