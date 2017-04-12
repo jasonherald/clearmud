@@ -31,6 +31,10 @@ func RequestHandler(conn net.Conn, out chan string, user objects.User) {
 			user.Move(2)
 		case "s":
 			user.Move(3)
+		case "u":
+			user.Move(4)
+		case "d":
+			user.Move(5)
 		}
 		out <- "Current Position: " + user.ToString() + "\n"
 	}

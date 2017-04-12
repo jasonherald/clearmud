@@ -42,10 +42,14 @@ func (u *User) Move(direction int) {
 	case 0:
 		u.Y = u.Y + 1
 	case 1:
-		u.X = u.X - 1
-	case 2:
 		u.X = u.X + 1
+	case 2:
+		u.X = u.X - 1
 	case 3:
 		u.Y = u.Y - 1
+	case 4:
+		u.Z = u.Z + 1
+	case 5:
+		u.Z = u.Z - 1
 	}
 }
