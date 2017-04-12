@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"io"
+	"io/ioutil"
 	"log"
 	"net"
 )
@@ -30,11 +31,21 @@ func sendData(conn net.Conn, in <-chan string) {
 	}
 }
 
+func loadMotd() string {
+	content, err := ioutil.ReadFile("MOTD")
+	if err != nil {
+		panic(1)
+	}
+	return string(content)
+}
+
 func main() {
 	psock, err := net.Listen("tcp", ":5000")
 	if err != nil {
 		return
 	}
+
+	var motd = loadMotd()
 
 	for {
 		conn, err := psock.Accept()
@@ -45,5 +56,6 @@ func main() {
 		channel := make(chan string)
 		go requestHandler(conn, channel)
 		go sendData(conn, channel)
+		channel <- motd
 	}
 }
