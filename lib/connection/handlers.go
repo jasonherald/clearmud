@@ -5,9 +5,7 @@ import (
 	"bytes"
 	"io"
 	"net"
-	"reflect"
 	"strings"
-	"unsafe"
 
 	objects "../objects"
 )
@@ -21,7 +19,7 @@ func RequestHandler(conn net.Conn, out chan string, user objects.User) {
 		}
 
 		// look up the command which for now is just a movement
-		str := BytesToString(line)
+		str := string(line)
 		str = strings.Trim(str, "\n")
 		str = strings.Trim(str, "\r")
 		switch str {
@@ -36,12 +34,6 @@ func RequestHandler(conn net.Conn, out chan string, user objects.User) {
 		}
 		out <- "Current Position: " + user.ToString() + "\n"
 	}
-}
-
-func BytesToString(b []byte) string {
-	bh := (*reflect.SliceHeader)(unsafe.Pointer(&b))
-	sh := reflect.StringHeader{bh.Data, bh.Len}
-	return *(*string)(unsafe.Pointer(&sh))
 }
 
 func SendData(conn net.Conn, in <-chan string) {
