@@ -1,10 +1,11 @@
-package clearmud
+package main
 
 import (
 	"io/ioutil"
 	"net"
 
 	handlers "./lib/connection"
+	objects "./lib/objects"
 )
 
 func loadMotd() string {
@@ -27,9 +28,14 @@ func main() {
 			return // stop the program
 		}
 
-		channel := make(chan string)              // build a channel for concurrency
-		go handlers.RequestHandler(conn, channel) // listen for incoming data
-		go handlers.SendData(conn, channel)       // send data
-		channel <- loadMotd()                     // send the motd
+		user := objects.User{
+			X: 0,
+			Y: 0,
+			Z: 0,
+		}
+		channel := make(chan string)                    // build a channel for concurrency
+		go handlers.RequestHandler(conn, channel, user) // listen for incoming data
+		go handlers.SendData(conn, channel)             // send data
+		channel <- loadMotd()                           // send the motd
 	}
 }
