@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"io"
-	"log"
 	"net"
 	"reflect"
 	"strings"
@@ -25,8 +24,6 @@ func RequestHandler(conn net.Conn, out chan string, user objects.User) {
 		str := BytesToString(line)
 		str = strings.Trim(str, "\n")
 		str = strings.Trim(str, "\r")
-		log.Println(len(str))
-		log.Println(str)
 		switch str {
 		case "n":
 			user.Move(0)
