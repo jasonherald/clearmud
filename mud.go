@@ -16,6 +16,7 @@ func main() {
 		return // stop the program
 	}
 
+	// load in and parse the xml messages
 	messages.Parse()
 
 	// spin up the ticker
@@ -28,9 +29,9 @@ func main() {
 			return // stop the program
 		}
 
-		//TODO: Need to retrieve the user's last position from storage
 		channel := make(chan string) // build a channel for concurrency
 
+		//TODO: Need to retrieve the user's last position from storage
 		user := &objects.User{
 			X:    0,
 			Y:    0,
@@ -41,6 +42,6 @@ func main() {
 
 		go handlers.RequestHandler(conn, channel, user) // listen for incoming data
 		go handlers.SendData(conn, channel)             // send data
-		sing.GetInstance().Add(user)
+		sing.GetInstance().Add(user)                    // register this user in the singleton
 	}
 }
