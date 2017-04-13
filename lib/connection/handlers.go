@@ -10,15 +10,17 @@ import (
 	"strings"
 )
 
+//RequestHandler Handles all incoming data
 func RequestHandler(conn net.Conn, out chan string, user objects.User) {
-	defer close(out)
+	defer close(out) // close the connection when we are done
 	for {
-		line, err := bufio.NewReader(conn).ReadBytes('\n')
+		line, err := bufio.NewReader(conn).ReadBytes('\n') // pull the line from the socket
 		if err != nil {
 			return
 		}
 
 		// look up the command which for now is just a movement
+		// this code sucks... lol
 		str := string(line)
 		str = strings.Trim(str, "\n")
 		str = strings.Trim(str, "\r")
@@ -31,19 +33,27 @@ func RequestHandler(conn net.Conn, out chan string, user objects.User) {
 			user.Move(2)
 		case "s":
 			user.Move(3)
+<<<<<<< HEAD
 		case "fight":
 			combats.Fight()
+=======
+		case "u":
+			user.Move(4)
+		case "d":
+			user.Move(5)
+>>>>>>> 2cc4f8c8e5d53b03d2ca5d158bfa59f47175ec3f
 		}
-		out <- "Current Position: " + user.ToString() + "\n"
+		out <- "Current Position: " + user.ToString() + "\n" // print this mess to the user for now
 	}
 }
 
+//SendData handles all outgoing data
 func SendData(conn net.Conn, in <-chan string) {
-	defer conn.Close()
+	defer conn.Close() // close when we are done
 	for {
-		message := <-in
-		if message != "" {
-			io.Copy(conn, bytes.NewBufferString(message))
+		message := <-in    // get the message we are writing from the channel
+		if message != "" { // if it isn't blank
+			io.Copy(conn, bytes.NewBufferString(message)) // write it to the socket
 		}
 	}
 }
