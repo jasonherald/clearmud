@@ -6,6 +6,7 @@ import (
 
 	handlers "./lib/connection"
 	objects "./lib/objects"
+	ticker "./lib/ticker"
 )
 
 func loadMotd() string {
@@ -21,6 +22,10 @@ func main() {
 	if err != nil {                          // if the connection wasn't successful
 		return // stop the program
 	}
+
+	// spin up the ticker
+	ticker.Start()
+	defer ticker.Stop()
 
 	for { // loop forever
 		conn, err := psock.Accept() // accept the incoming connection
