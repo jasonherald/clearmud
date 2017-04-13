@@ -33,15 +33,12 @@ func RequestHandler(conn net.Conn, out chan string, user objects.User) {
 			user.Move(2)
 		case "s":
 			user.Move(3)
-<<<<<<< HEAD
 		case "fight":
 			combats.Fight()
-=======
 		case "u":
 			user.Move(4)
 		case "d":
 			user.Move(5)
->>>>>>> 2cc4f8c8e5d53b03d2ca5d158bfa59f47175ec3f
 		}
 		out <- "Current Position: " + user.ToString() + "\n" // print this mess to the user for now
 	}
