@@ -1,13 +1,13 @@
 package handlers
 
 import (
+	combats "../combat"
+	objects "../objects"
 	"bufio"
 	"bytes"
 	"io"
 	"net"
 	"strings"
-
-	objects "../objects"
 )
 
 //RequestHandler Handles all incoming data
@@ -33,6 +33,8 @@ func RequestHandler(conn net.Conn, out chan string, user objects.User) {
 			user.Move(2)
 		case "s":
 			user.Move(3)
+		case "fight":
+			combats.Fight()
 		case "u":
 			user.Move(4)
 		case "d":
