@@ -5,6 +5,8 @@ import "strconv"
 //User structure for the user
 type User struct {
 	X, Y, Z int64
+	C       chan string
+	Name    string
 }
 
 //ToString Function to convert the user to a string object

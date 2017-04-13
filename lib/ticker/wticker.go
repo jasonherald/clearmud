@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var ticker = time.NewTicker(time.Second)
+var ticker = time.NewTicker(time.Second * 5)
 
 func Start() {
 	go func() {

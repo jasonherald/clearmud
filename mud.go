@@ -1,27 +1,22 @@
 package main
 
 import (
-	"io/ioutil"
 	"net"
 
 	handlers "./lib/connection"
+	messages "./lib/messages"
 	objects "./lib/objects"
+	sing "./lib/singletons"
 	ticker "./lib/ticker"
 )
-
-func loadMotd() string {
-	content, err := ioutil.ReadFile("MOTD") // load the file contents for the MOTD
-	if err != nil {                         // if reading the file wasn't successulf
-		panic(1) // oh dear god!!!!
-	}
-	return string(content) // return the string representation of the file's contents
-}
 
 func main() {
 	psock, err := net.Listen("tcp", ":5000") // server socket declaration on port 5000
 	if err != nil {                          // if the connection wasn't successful
 		return // stop the program
 	}
+
+	messages.Parse()
 
 	// spin up the ticker
 	ticker.Start()
@@ -34,14 +29,18 @@ func main() {
 		}
 
 		//TODO: Need to retrieve the user's last position from storage
-		user := objects.User{
-			X: 0,
-			Y: 0,
-			Z: 0,
+		channel := make(chan string) // build a channel for concurrency
+
+		user := &objects.User{
+			X:    0,
+			Y:    0,
+			Z:    0,
+			C:    channel,
+			Name: "Jason",
 		}
-		channel := make(chan string)                    // build a channel for concurrency
+
 		go handlers.RequestHandler(conn, channel, user) // listen for incoming data
 		go handlers.SendData(conn, channel)             // send data
-		channel <- loadMotd()                           // send the motd
+		sing.GetInstance().Add(user)
 	}
 }

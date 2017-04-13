@@ -1,17 +1,18 @@
 package handlers
 
 import (
-	combats "../combat"
-	objects "../objects"
 	"bufio"
 	"bytes"
 	"io"
 	"net"
 	"strings"
+
+	combats "../combat"
+	objects "../objects"
 )
 
 //RequestHandler Handles all incoming data
-func RequestHandler(conn net.Conn, out chan string, user objects.User) {
+func RequestHandler(conn net.Conn, out chan string, user *objects.User) {
 	defer close(out) // close the connection when we are done
 	for {
 		line, err := bufio.NewReader(conn).ReadBytes('\n') // pull the line from the socket
