@@ -1,13 +1,13 @@
 package handlers
 
 import (
+	combats "../combat"
+	objects "../objects"
 	"bufio"
 	"bytes"
 	"io"
 	"net"
 	"strings"
-
-	objects "../objects"
 )
 
 func RequestHandler(conn net.Conn, out chan string, user objects.User) {
@@ -31,6 +31,8 @@ func RequestHandler(conn net.Conn, out chan string, user objects.User) {
 			user.Move(2)
 		case "s":
 			user.Move(3)
+		case "fight":
+			combats.Fight()
 		}
 		out <- "Current Position: " + user.ToString() + "\n"
 	}
