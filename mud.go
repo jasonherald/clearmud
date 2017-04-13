@@ -4,7 +4,6 @@ import (
 	"net"
 
 	handlers "./lib/connection"
-	messages "./lib/messages"
 	objects "./lib/objects"
 	sing "./lib/singletons"
 	ticker "./lib/ticker"
@@ -17,7 +16,7 @@ func main() {
 	}
 
 	// load in and parse the xml messages
-	messages.Parse()
+	sing.GetMessagesInstance()
 
 	// spin up the ticker
 	ticker.Start()
@@ -33,15 +32,16 @@ func main() {
 
 		//TODO: Need to retrieve the user's last position from storage
 		user := &objects.User{
-			X:    0,
-			Y:    0,
-			Z:    0,
-			C:    channel,
-			Name: "Jason",
+			X:              0,
+			Y:              0,
+			Z:              0,
+			C:              channel,
+			Name:           "Jason",
+			SentTimeUpdate: 0,
 		}
 
 		go handlers.RequestHandler(conn, channel, user) // listen for incoming data
 		go handlers.SendData(conn, channel)             // send data
-		sing.GetInstance().Add(user)                    // register this user in the singleton
+		sing.GetUsersInstance().Add(user)               // register this user in the singleton
 	}
 }

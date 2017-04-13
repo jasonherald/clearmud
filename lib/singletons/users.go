@@ -5,6 +5,7 @@ import (
 	"sync"
 
 	objects "../objects"
+	"github.com/chrislusf/glow/flow"
 )
 
 type singleton struct {
@@ -15,7 +16,7 @@ var instance *singleton // single singleton instance
 var once sync.Once      // threadsafe runner
 
 //GetInstance returns the singleton instance
-func GetInstance() *singleton {
+func GetUsersInstance() *singleton {
 	once.Do(func() { // run once
 		instance = &singleton{} // instantiate the singleton
 	})
@@ -33,6 +34,23 @@ func (s *singleton) SendAll(message string) {
 	for _, element := range s.UserList { // loop over all the users
 		element.C <- message // send the message through the channel
 	}
+}
+
+//SendWhere sends a message to users matching the criteria function f
+func (s *singleton) SendWhere(message string, f func(u *objects.User) bool) {
+	flow.New().Slice(GetUsersInstance().UserList).Filter(f).Map(func(u *objects.User) {
+		u.C <- message
+	}).Run()
+
+}
+
+//SendWhereAndUpdate sends a message to users matching the criteria function f and running an after function up
+func (s *singleton) SendWhereAndUpdate(message string, f func(u *objects.User) bool, up func(u *objects.User)) {
+	flow.New().Slice(GetUsersInstance().UserList).Filter(f).Map(func(u *objects.User) {
+		u.C <- message
+		up(u)
+	}).Run()
+
 }
 
 //SendOne send a message to one user
