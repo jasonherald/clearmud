@@ -2,14 +2,17 @@ package objects
 
 import "strconv"
 
+//User structure for the user
 type User struct {
 	X, Y, Z int64
 }
 
+//ToString Function to convert the user to a string object
 func (u *User) ToString() string {
 	return strconv.FormatInt(u.X, 10) + ", " + strconv.FormatInt(u.Y, 10) + ", " + strconv.FormatInt(u.Z, 10)
 }
 
+//Move Function to move the user's position
 func (u *User) Move(direction int) {
 	switch direction {
 	case 0:
