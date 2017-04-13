@@ -2,35 +2,8 @@ package objects
 
 import "strconv"
 
-type Wmap struct {
-	Limitx, Limity, Limitz int64
-}
-
-type Basecoord struct {
-	X, Y, Z int64
-}
-
-type Coord struct {
-	*Basecoord
-	Parent int64
-}
-
-type Wobject struct {
-	Coords      Coord
-	Description string
-	Name        string
-}
-
-type Planet struct {
-	*Wobject
-}
-
 type User struct {
 	X, Y, Z int64
-}
-
-func (b *Basecoord) ToString() string {
-	return strconv.FormatInt(b.X, 10) + ", " + strconv.FormatInt(b.Y, 10) + ", " + strconv.FormatInt(b.Z, 10)
 }
 
 func (u *User) ToString() string {
