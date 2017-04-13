@@ -33,6 +33,7 @@ func main() {
 			return // stop the program
 		}
 
+		//TODO: Need to retrieve the user's last position from storage
 		user := objects.User{
 			X: 0,
 			Y: 0,
