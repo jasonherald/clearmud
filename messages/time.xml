@@ -4,7 +4,7 @@
         <OnPlanet>1</OnPlanet>
         <When>7</When>
         <Body>
-            The morning sun slowly pokes its head up over the eastern horizon.
+            The morning sun slowly pokes its head up over the horizon.
         </Body>
     </Message>
     <Message>
@@ -25,7 +25,7 @@
         <OnPlanet>1</OnPlanet>
         <When>20</When>
         <Body>
-            The sky goes dark as the sun passes over the western horizon.
+            The sky goes dark as the sun passes over the horizon.
         </Body>        
     </Message>
 </time>
