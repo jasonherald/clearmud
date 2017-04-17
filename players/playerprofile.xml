@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<player>
+    <name></name>
+    <description></description>
+    <age></age>
+    <class></class>
+    <rank></rank>
+    <stats>
+        <strength></strength>
+        <dexterity></dexterity>
+        <intelligence></intelligence>
+        <constituion></constituion>
+        <wisdom></wisdom>
+    </stats>
+</player>
