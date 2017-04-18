@@ -2,20 +2,20 @@
 <eq> <!--This is for equipment used during combat-->
     <location> <!--Where are on the body-->
         <head> <!--Items with a location of head can only be worn on the head-->
+            <name></name> <!-- Armor Name -->
             <description></description> <!--Item description is required-->
             <armor></armor> <!--Amount players base armor is increased by wearing this item-->
-            <damage></damage> <!--Amount players base damage is increased by wearing this item -->
             <speed></speed> <!--Amount players base speed is increased by wearing this item-->
             <special></special> <!--Any special abilities the item has over other items of this type. Ex. Helmet could allow player to see cloaked people-->
             <weight></weight> <!--Weight of item that will be added to the players ability to hold-->
             <cost></cost> <!--Cost to by item at Vendors-->
             <sell></sell> <!--Amount vendors will pay for item-->
             <unique></unique> <!--Unique items can only be used or kept by the player that created or first picked it up-->
+            <material></material> <!--What material is eq made of-->
         </head>
         <arms>
             <description></description>
             <armor></armor>
-            <damage></damage>
             <special></special>
         </arms>
         <legs>
@@ -27,7 +27,6 @@
         <torso>
             <description></description>
             <armor></armor>
-            <damage></damage>
             <special></special>
         </torso>
         <hands>
@@ -39,16 +38,48 @@
         <feet>
             <description></description>
             <armor></armor>
-            <damage></damage>
             <special></special>
         </feet>
-        <weapon>
-            <description></description>
-            <armor></armor>
-            <damage></damage>
-            <special></special>
-        </weapon>
     </location>
+    <weaponType>
+        <pistol>
+            <name></name>
+            <description></description>
+            <weight></weight>
+            <size>small</size> <!--Size will be used to determine amount of equipment that can be held. Ex. Small,Meduim,Large -->
+            <damage></damage> <!--Amount players base damage is increased by wearing this item -->
+            <range></range>
+            <special></special>
+        </pistol>
+        <rifle>
+            
+        </rifle>
+        <gernade>
+            
+        </gernade>
+        <maser>
+            
+        </maser>
+        <rocketLauncher>
+            
+        </rocketLauncher>
+        <railGun>
+            
+        </railGun>
+    </weaponType>
+    <weaponMod>
+        <ammo>
+            <name></name>
+            <description></description>
+            <quantity></quantity>
+            <special></special>
+        </ammo>
+        <sights>
+            <name></name>
+            <description></description>  
+            <special></special>
+        </sights>
+    </weaponMod>
 </eq>
 <food>
     <description></description>

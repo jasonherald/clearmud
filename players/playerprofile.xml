@@ -5,11 +5,16 @@
     <age></age>
     <class></class>
     <rank></rank>
-    <stats>
+    <baseStats>
         <strength></strength>
         <dexterity></dexterity>
         <intelligence></intelligence>
         <constituion></constituion>
         <wisdom></wisdom>
-    </stats>
+    </baseStats>
+    <statModifiers>
+        <armor></armor>
+        <damage></damage>
+        <accuracy></accuracy>
+    </statModifiers>
 </player>
