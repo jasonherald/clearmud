@@ -3,8 +3,9 @@
     <name></name>
     <description></description>
     <age></age>
-    <class></class>
-    <rank></rank>
+    <class></class> <!--You can add new classes only after completing the class you are on-->
+    <rank></rank> <!--You must reach a certain rank before you can take on another class -->
+    <level></level> <!--You must reach level 10 before your rank can be promoted -->
     <baseStats>
         <strength></strength>
         <dexterity></dexterity>

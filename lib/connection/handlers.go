@@ -5,10 +5,8 @@ import (
 	"bytes"
 	"io"
 	"net"
-	"strconv"
 	"strings"
 
-	combats "../combat"
 	objects "../objects"
 )
 
@@ -35,15 +33,13 @@ func RequestHandler(conn net.Conn, out chan string, user *objects.User) {
 			user.Move(2)
 		case "s":
 			user.Move(3)
-		case "fight":
-			combats.Fight()
 		case "u":
 			user.Move(4)
 		case "d":
 			user.Move(5)
 		}
 		out <- "Current Position: " + user.ToString() + "\n" // print this mess to the user for now
-		out <- strconv.FormatInt(combats.Fight(), 10) + "\n" //print combat
+
 	}
 }
 
