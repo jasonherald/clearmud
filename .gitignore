@@ -17,3 +17,6 @@ bin/
 pkg/
 src/
 workspace
+
+clearmud
+clearmud.log
