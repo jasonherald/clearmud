@@ -8,8 +8,19 @@ import (
 	sing "./lib/singletons"
 	ticker "./lib/ticker"
 )
+import (
+	telnet "github.com/reiver/go-telnet"
+)
 
 func main() {
+	var handler telnet.Handler = telnet.EchoHandler
+
+	err := telnet.ListenAndServe(":5555", handler)
+	if nil != err {
+		//@TODO: Handle this error better.
+		panic(err)
+	}
+
 	psock, err := net.Listen("tcp", ":5000") // server socket declaration on port 5000
 	if err != nil {                          // if the connection wasn't successful
 		return // stop the program
