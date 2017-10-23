@@ -7,12 +7,11 @@ import (
 	objects "./lib/objects"
 	sing "./lib/singletons"
 	ticker "./lib/ticker"
-)
-import (
 	telnet "github.com/reiver/go-telnet"
 )
 
 func main() {
+	// new telnet nonsense
 	var handler telnet.Handler = telnet.EchoHandler
 
 	err := telnet.ListenAndServe(":5555", handler)
